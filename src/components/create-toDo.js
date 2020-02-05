@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class CreateTodo extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export default class CreateTodo extends Component {
       todo_desc: "",
       todo_author: "",
       todo_category: "",
-      todo_flag: ""
+      todo_flag: false
     };
     this.onChangeTodoDesc = this.onChangeTodoDesc.bind(this);
     this.onChangeTodoAuthor = this.onChangeTodoAuthor.bind(this);
@@ -35,11 +36,20 @@ export default class CreateTodo extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log(`Form submitted:`);
-    console.log(`Todo Desc: ${this.state.todo_desc}`);
-    console.log(`Todo Author: ${this.state.todo_author}`);
-    console.log(`Todo Category: ${this.state.todo_category}`);
+    /* Creating newTodo object to post */
+    const newTodo = {
+      todo_desc: this.state.todo_desc,
+      todo_author: this.state.todo_author,
+      todo_category: this.state.todo_category,
+      todo_flag: this.state.todo_flag
+    };
 
+    /* Axios request to add new Todo */
+    axios
+      .post("http://localhost:4000/todos/add", newTodo)
+      .then(res => console.log(res.data));
+
+    /* Setting states empty after created successfully */
     this.setState({
       todo_desc: "",
       todo_author: "",
@@ -53,7 +63,7 @@ export default class CreateTodo extends Component {
         <h3>Create New Todo</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Description: </label>
+            <label>Task </label>
             <input
               type="text"
               className="form-control"
@@ -62,7 +72,7 @@ export default class CreateTodo extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Responsible: </label>
+            <label>Author/Assigned to </label>
             <input
               type="text"
               className="form-control"
