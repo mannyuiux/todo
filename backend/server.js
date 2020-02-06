@@ -24,6 +24,8 @@ app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);
 });
 
+
+//CRUD Operations 
 todoRoutes.route("/").get(function(req, res) {
   Todo.find(function(err, todos) {
     if (err) {
@@ -64,6 +66,7 @@ todoRoutes.route("/update/:id").post(function(req, res) {
     todo.todo_author = req.body.todo_author;
     todo.todo_category = req.body.todo_category;
     todo.todo_flag = req.body.todo_flag;
+    todo.todo_delete = false;
 
     todo
       .save()

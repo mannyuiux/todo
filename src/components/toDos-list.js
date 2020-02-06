@@ -35,6 +35,7 @@ export default class TodosList extends Component {
         console.log("Error occured while getting Todos:", error);
       });
   }
+
   todoList() {
     return this.state.todos.map(function(currentTodo, i) {
       return <Todo todo={currentTodo} key={i} />;

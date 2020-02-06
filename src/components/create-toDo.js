@@ -15,6 +15,7 @@ export default class CreateTodo extends Component {
     this.onChangeTodoCategory = this.onChangeTodoCategory.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
   onChangeTodoDesc(e) {
     this.setState({
       todo_desc: e.target.value
@@ -41,7 +42,8 @@ export default class CreateTodo extends Component {
       todo_desc: this.state.todo_desc,
       todo_author: this.state.todo_author,
       todo_category: this.state.todo_category,
-      todo_flag: this.state.todo_flag
+      todo_flag: this.state.todo_flag,
+      todo_delete: false,
     };
 
     /* Axios request to add new Todo */
@@ -54,7 +56,8 @@ export default class CreateTodo extends Component {
       todo_desc: "",
       todo_author: "",
       todo_category: "",
-      todo_flag: false
+      todo_flag: false,
+      todo_delete: false,
     });
   }
   render() {

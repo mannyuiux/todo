@@ -56,6 +56,7 @@ export default class EditTodo extends Component {
       todo_flag: !this.state.todo_flag
     });
   }
+
   onSubmit(e) {
     e.preventDefault();
     const obj = {
@@ -64,7 +65,7 @@ export default class EditTodo extends Component {
       todo_category: this.state.todo_category,
       todo_flag: this.state.todo_flag
     };
-    console.log(obj);
+    
     axios
       .post(
         "http://localhost:4000/todos/update/" + this.props.match.params.id,

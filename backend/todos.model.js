@@ -14,6 +14,9 @@ let Todo = new Schema({
   },
   todo_flag: {
     type: Boolean
+  },
+  todo_delete: {
+    type: Boolean
   }
 });
 
